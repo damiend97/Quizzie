@@ -18,6 +18,8 @@ body {
     height:50vh;
     font-size: 1.75em;
     font-weight: bolder;
+    text-align: center;
+    border: 1px solid red;
 }
 .link-container {
     height: 50vh;
