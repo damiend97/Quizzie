@@ -14,7 +14,7 @@ class Quiz extends Component {
     }
 
     playAgain = () => {
-        location.reload();
+        window.location.href = "https://quizapp-c457d.web.app/";
     }
     
     upScore = () => {
