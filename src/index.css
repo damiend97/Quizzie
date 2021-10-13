@@ -2,33 +2,49 @@ html, body {
     margin: 0px;
     padding: 0px;
     height: 100%;
+    font-family: 'Rubik', sans-serif;
 }
 body {
-    background: gray;
+    background: radial-gradient(rgb(0, 204, 255), black);
+}
+.home-container {
+    color: black;
+}
+.welcome-text {
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height:50vh;
+    font-size: 1.75em;
+    font-weight: bolder;
+}
+.link-container {
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
 }
 .start-button {
     padding: 25px;
-    font-size: 4rem;
-    border: 4px solid white;
+    font-size: 2em;
+    box-shadow: inset 3px 3px 3px white, inset -3px -3px 3px gray;
     color: white;
     border-radius: 25px;
     text-decoration: none;
-    position: absolute;
-    top: 35vh;
-    left: 25%;
-    right: 25%;
     text-align: center;
+    font-style: italic;
 }
 .start-button:hover {
-    border: 6px solid white;
     cursor: pointer;
+    box-shadow: inset 3px 3px 3px gray, inset -3px -3px 3px white;
 }
 .stats {
-    background: darkslategray;
+    background: rgb(250, 250, 250);
     display: flex;
     justify-content: space-evenly;
     font-size: 1.5rem;
-    color: white;
+    color: rgb(0, 0, 0);
     font-weight: bold;
     padding: 25px;
 }
@@ -76,15 +92,46 @@ body {
     border-top-right-radius: 25px;
 }
 .answer:hover {
-    color: darkslategray;
+    background: white;
+    color:rgb(0, 204, 255);
     cursor: pointer;
 }
-.final-score {
-    font-size: 2rem;
+.end-container {
     color: white;
     font-weight: bold;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
+}
+.final-score {
+    font-size: 2em;
+    height: 50vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+.play-again-container {
+    width: 100%;
+    text-align: center;
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.play-again-button {
+    padding: 25px;
+    font-size: 2em;
+    box-shadow: inset 3px 3px 3px white, inset -3px -3px 3px gray;
+    color: white;
+    border-radius: 25px;
+    text-decoration: none;
+    text-align: center;
+    font-style: italic;
+}
+.play-again-button:hover {
+    cursor: pointer;
+    box-shadow: inset 3px 3px 3px gray, inset -3px -3px 3px white;
 }

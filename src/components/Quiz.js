@@ -13,6 +13,10 @@ class Quiz extends Component {
         }
     }
 
+    playAgain = () => {
+        location.reload();
+    }
+    
     upScore = () => {
         this.setState({
             score: this.state.score += 1
@@ -28,7 +32,46 @@ class Quiz extends Component {
         fetch('https://opentdb.com/api.php?amount=26&difficulty=easy')
         .then(res => res.json())
         .then(
-            (result) => {                
+            (result) => {
+                console.log(result);
+
+                result.results.forEach(item => {
+                    item.category = item.category.replace(/&quot;/g,'"');
+                    item.category = item.category.replace(/&#039;/g,"'");
+                    item.category = item.category.replace(/&amp;/g,"&");
+
+                    item.correct_answer = item.correct_answer.replace(/&quot;/g,'"');
+                    item.correct_answer = item.correct_answer.replace(/&#039;/g,"'");
+                    item.correct_answer = item.correct_answer.replace(/&amp;/g,"&");
+
+
+                    for (let i=0; i < item.incorrect_answers.length; i++) {
+                        item.incorrect_answers[i] = item.incorrect_answers[i].replace(/&quot;/g,'"');
+                        item.incorrect_answers[i] = item.incorrect_answers[i].replace(/&#039;/g,"'");
+                        item.incorrect_answers[i] = item.incorrect_answers[i].replace(/&amp;/g,"&");
+                    }
+                    
+                    item.question = item.question.replace(/&quot;/g,'"');
+                    item.question = item.question.replace(/&#039;/g,"'");
+                    item.question = item.question.replace(/&amp;/g,"&");
+
+                    console.log(item.correct_answer);
+
+                    /*
+
+                    &quot;  "
+                    replace(/&quot;/g,'"');
+
+                    &#039;  '
+                    replace(/&#039;/g,"'");
+
+                    &amp;   &
+                    replace(/&amp;/g,"&");
+
+                    */
+                });
+
+                
                 this.setState({
                     isLoaded: true,
                     questions: result.results
@@ -73,9 +116,44 @@ class Quiz extends Component {
                     </div>
                 )
             } else {
-                return (
-                    <div className="final-score">Nice! Your final score is: { this.state.score}/25</div>
-                )
+                if (this.state.score === 25) {
+                    return (
+                        <div className="end-container">
+                            <div className="final-score">Wow! Your final score was: {this.state.score}/25. Perfect!</div>
+                            <div className="play-again-container">
+                                <div className="play-again-button" onClick={this.playAgain}>Play Again</div>
+                            </div>
+                        </div>
+                    )
+                } else if (this.state.score < 25 && this.state.score > 20) {
+                    return (
+                        <div className="end-container">
+                            <div className="final-score">Pretty good! Your final score was: {this.state.score}/25</div>
+                            <div className="play-again-container">
+                                <div className="play-again-button" onClick={this.playAgain}>Play Again</div>
+                            </div>
+                        </div>
+                    )
+                } else if (this.state.score <= 20 && this.state.score > 10) {
+                    return (
+                        <div className="end-container">
+                            <div className="final-score">Not too bad...Your final score was: {this.state.score}/25</div>
+                            <div className="play-again-container">
+                                <div className="play-again-button" onClick={this.playAgain}>Play Again</div>
+                            </div>
+                        </div>
+                    )
+                } else if (this.state.score <= 10) {
+                    return (
+                        <div className="end-container">
+                            <div className="final-score">Ouch! Your final score was: {this.state.score}/25</div>
+                            <div className="play-again-container">
+                                <div className="play-again-button" onClick={this.playAgain}>Play Again</div>
+                            </div>
+                        </div>
+                    )
+                }
+                
             }
         }
     }
